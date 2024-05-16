@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        {% load static %}
+        
+        <link rel="icon" href="{% static 'trash express img.png' %}">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+   <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = '03edfc5135ecf17096232e9123deac29cc743131';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+        <style>
+            body {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                background-color: rgba(248,255,244, 0.8); /* Set a light background color */
+                margin: 0;
+                padding: 0;
+                height: 100vh; /* Make the body full height */
+            }
+
+            .diva-reg{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                
+            }
+    
+            .registration-form {
+                background-color: rgba(248,255,244, 0.8);
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 90px;
+                gap: 10px;
+            }
+    
+            .registration-form h3 {
+                margin-bottom: 20px;
+            }
+    
+            .registration-form form {
+                margin-top: 20px;
+                padding-bottom: 30px;
+            }
+
+            .registration-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .registration-form input[type="text"],
+        .registration-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    
+            .registration-form button {
+                width: 100%;
+                padding: 10px;
+                color: #fff; /* Set text color to white */
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s; /* Add smooth transition */
+                margin-top: 30px;
+            }
+
+    
+            .registration-form a {
+                display: block;
+                text-align: center;
+                margin-top: 10px;
+                text-decoration: none;
+                transition: color 0.3s; /* Add smooth transition */
+            }
+    
+        </style>
+</head>
+  <body>
+     <!--Header section-->
+ <header>
+    <nav>
+      <div class="div1">
+        <img class="logo-image" src="{% static 'trash express img.png' %}" alt="Trash express logo">
+        <h1 class="h11">Trash Express</h1>
+      </div>
+
+      <ul class="ul1">
+        <li class="li1"><a class="a1" href="{% url 'home' %}">Home</a></li>
+        <li class="li1"><a class="a1" href="{% url 'about' %}">About Us</a></li>
+        <li class="li1"><a class="a1" href="{% url 'services' %}">Services</a></li>
+        <li class="li1"><a class="a1" href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+        <a href="{% url 'register' %}"><button class="btn">Register</button></a>
+
+       <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+       </div>
+    </nav>
+  </header>
+
+  <div class="dropdown-menu">
+    <li class="li2"><a class="dropclass" href="{% url 'home' %}">Home</a></li>
+    <li class="li2"><a class="dropclass" href="{% url 'about' %}">About Us</a></li>
+    <li class="li2"><a class="dropclass" href="{% url 'services' %}">Services</a></li>
+    <li class="li2"><a class="dropclass" href="{% url 'contact' %}">Contact Us</a></li>
+    <li class="li2"><a class="dropclass" href="{% url 'register' %}">Register</a></li>
+  </div>
+  <div class="diva-reg">
+  <div class="registration-form">
+      <h3>Login</h3>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <p style="color: red;">{{ form.non_field_errors }}</p>
+        {% endif %}
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+        {% for error in form.username.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        <label for="id_password">Password:</label>
+        {{ form.password }}
+        {% for error in form.password.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        <button>Login</button>
+        <a href="{% url 'register' %}">No Account? Register here</a>
+        <!-- <p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p> -->
+    </form>
+        
+  </div></div>
+  <div class="copyright"> &copy; 2024 Hadsh Technologies All rights reserved.</div>
+  <script>
+   const hamburger = document.querySelector('.hamburger')
+   const dropDownMenu = document.querySelector('.dropdown-menu')
+
+
+   hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    dropDownMenu.classList.toggle("active");
+    })
+
+    document.querySelectorAll(".dropclass").forEach(n => n.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+    }))
+</script>
+</body>
+</html>
